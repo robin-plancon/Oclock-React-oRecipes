@@ -9,11 +9,14 @@ import App from './components/App/App';
 import './styles/index.scss';
 
 import store from './store';
+import { getRecipes } from './store/reducers/recipes';
 
 // Je créer un root pour mon application (a partir d'un élément HTML)
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+store.dispatch(getRecipes());
 
 // On injecte notre application dans le DOM
 root.render(

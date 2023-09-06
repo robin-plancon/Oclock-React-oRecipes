@@ -16,7 +16,7 @@ import './styles.scss';
 function Recipe() {
   const params = useParams();
   const recipe = useAppSelector((state) => {
-    if (params.slug) {
+    if (params.slug && state.recipes && state.recipes.list) {
       return findRecipe(state.recipes.list, params.slug);
     }
     return undefined;
