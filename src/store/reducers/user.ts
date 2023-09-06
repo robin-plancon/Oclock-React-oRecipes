@@ -7,7 +7,6 @@ export const initialState: UserState = {
   logged: false,
 };
 
-const userReducer = createReducer(initialState, () => {
-});
+const userReducer = createReducer(initialState, () => { });
 
 export default userReducer;

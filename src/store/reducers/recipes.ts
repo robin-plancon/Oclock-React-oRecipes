@@ -9,7 +9,6 @@ export const initialState: RecipesState = {
   list: data,
 };
 
-const recipesReducer = createReducer(initialState, () => {
-});
+const recipesReducer = createReducer(initialState, () => { });
 
 export default recipesReducer;

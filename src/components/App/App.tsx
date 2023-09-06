@@ -11,10 +11,10 @@ interface AppProps {
   loading?: boolean;
 }
 
-function App({ loading }: AppProps) {
-  if (loading) {
-    return <Loading />;
-  }
+function App() {
+  // if (loading) {
+  //   return <Loading />;
+  // }
   return (
     <div className="app">
       <Menu />
