@@ -1,6 +1,8 @@
 import { Provider } from 'react-redux';
 // On importe ReactDom qui nous permettra d'injecter notre application dans le DOM
 import ReactDOM from 'react-dom/client';
+// On importe le composant BrowserRouter qui nous permettra d'utiliser le routage
+import { BrowserRouter } from 'react-router-dom';
 // On importe notre composant principal
 import App from './components/App/App';
 // On importe notre fichier de style global
@@ -15,7 +17,9 @@ const root = ReactDOM.createRoot(
 
 // On injecte notre application dans le DOM
 root.render(
-  <Provider store={store}>
-    <App />
-  </Provider>
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>
 );
