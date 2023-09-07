@@ -10,6 +10,7 @@ import './styles/index.scss';
 
 import store from './store';
 import { getRecipes } from './store/reducers/recipes';
+import ScrollToTop from './helpers/ScrollToTop';
 
 // Je créer un root pour mon application (a partir d'un élément HTML)
 const root = ReactDOM.createRoot(
@@ -22,6 +23,7 @@ store.dispatch(getRecipes());
 root.render(
   <BrowserRouter>
     <Provider store={store}>
+      <ScrollToTop />
       <App />
     </Provider>
   </BrowserRouter>

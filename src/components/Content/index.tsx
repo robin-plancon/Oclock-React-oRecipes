@@ -6,7 +6,7 @@ import './styles.scss';
 interface ContentProps {
   title: string;
   text: string;
-  recipes: Recipe[] | null;
+  recipes?: Recipe[];
 }
 
 function Content({ title, text, recipes }: ContentProps) {
@@ -24,5 +24,9 @@ function Content({ title, text, recipes }: ContentProps) {
     </section>
   );
 }
+
+Content.defaultProps = {
+  recipes: null,
+};
 
 export default Content;
