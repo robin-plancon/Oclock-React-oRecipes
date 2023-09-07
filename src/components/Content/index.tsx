@@ -26,7 +26,7 @@ function Content({ title, text, recipes }: ContentProps) {
 }
 
 Content.defaultProps = {
-  recipes: null,
+  recipes: [],
 };
 
 export default Content;

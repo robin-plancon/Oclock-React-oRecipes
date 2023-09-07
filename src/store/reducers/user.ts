@@ -7,6 +7,8 @@ export const initialState: UserState = {
   logged: false,
 };
 
-const userReducer = createReducer(initialState, () => { });
+const userReducer = createReducer(initialState, () => {
+  // TODO: Add actions
+});
 
 export default userReducer;
