@@ -1,28 +1,41 @@
-import { Link } from 'react-router-dom';
-
+import { NavLink } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/redux';
-import { Recipe } from '../../@types/recipe';
 
 import './styles.scss';
 
 function Menu() {
-  const recipes = useAppSelector((state) => state.recipes);
-  if (!recipes || !recipes.list) {
-    return null;
-  }
+  const recipes = useAppSelector((state) => state.recipes.list);
+
   return (
     <nav className="menu">
-      <Link className="menu-link menu-link--active" to="/">
+      <NavLink
+        className={({ isActive }) =>
+          isActive ? 'menu-link menu-link--active' : 'menu-link'
+        }
+        to="/"
+      >
         Accueil
-      </Link>
-      {recipes.list.map((recipe: Recipe) => (
-        <Link
+      </NavLink>
+
+      <NavLink
+        className={({ isActive }) =>
+          isActive ? 'menu-link menu-link--active' : 'menu-link'
+        }
+        to="/favorites"
+      >
+        Mes recettes préférées
+      </NavLink>
+
+      {recipes.map((recipe) => (
+        <NavLink
           key={recipe.id}
-          className="menu-link"
+          className={({ isActive }) =>
+            isActive ? 'menu-link menu-link--active' : 'menu-link'
+          }
           to={`/recipe/${recipe.slug}`}
         >
           {recipe.title}
-        </Link>
+        </NavLink>
       ))}
     </nav>
   );

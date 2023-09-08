@@ -12,6 +12,7 @@ import Loading from './Loading';
 import { getRecipes } from '../../store/reducers/recipes';
 
 import './App.scss';
+import Favorites from '../Favorites';
 
 // interface AppProps {
 //   loading?: boolean;
@@ -34,6 +35,7 @@ function App() {
       <Menu />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/favorites" element={<Favorites />} />
         <Route path="/recipe/:slug" element={<Recipe />} />
         <Route path="*" element={<Error />} />
       </Routes>
