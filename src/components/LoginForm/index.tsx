@@ -18,7 +18,12 @@ function LoginForm({
 }: LoginFormProps) {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    handleLogin();
+    // handleLogin();
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    const objData = Object.fromEntries(formData);
+    console.log(objData);
   };
 
   return (
