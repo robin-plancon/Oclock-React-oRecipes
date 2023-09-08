@@ -55,6 +55,7 @@ const userReducer = createReducer(initialState, (builder) => {
     })
     .addCase(logout, (state) => {
       state.pseudo = null;
+      axiosInstance.defaults.headers.common.Authorization = undefined;
       // state.token = null;
     });
 });
