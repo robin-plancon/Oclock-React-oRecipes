@@ -1,36 +1,34 @@
 import { FormEvent } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+
 import Field from './Field';
 
 import './styles.scss';
+import { login, logout } from '../../store/reducers/user';
 
-interface LoginFormProps {
-  handleLogin: () => void;
-  handleLogout: () => void;
-  isLogged?: boolean;
-  loggedMessage?: string;
-}
+function LoginForm() {
+  const pseudo = useAppSelector((state) => state.user.pseudo);
 
-function LoginForm({
-  handleLogin,
-  handleLogout,
-  isLogged,
-  loggedMessage,
-}: LoginFormProps) {
+  const dispatch = useAppDispatch();
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // handleLogin();
+
     const form = event.currentTarget;
     const formData = new FormData(form);
 
-    const objData = Object.fromEntries(formData);
-    console.log(objData);
+    dispatch(login(formData));
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
   };
 
   return (
     <div className="login-form">
-      {isLogged && (
+      {pseudo && (
         <div className="login-form-logged">
-          <p className="login-form-message">{loggedMessage}</p>
+          <p className="login-form-message">Bienvenue {pseudo}</p>
           <button
             type="button"
             className="login-form-button"
@@ -41,7 +39,7 @@ function LoginForm({
         </div>
       )}
 
-      {!isLogged && (
+      {!pseudo && (
         <form
           autoComplete="off"
           className="login-form-element"
@@ -57,10 +55,5 @@ function LoginForm({
     </div>
   );
 }
-
-LoginForm.defaultProps = {
-  isLogged: false,
-  loggedMessage: 'Connecté',
-};
 
 export default LoginForm;

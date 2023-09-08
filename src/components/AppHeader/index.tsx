@@ -7,12 +7,7 @@ function AppHeader() {
   return (
     <header className="header">
       <img src={logo} className="header-logo" alt="Logo oRecipes" />
-      <LoginForm
-        handleLogin={() => {}}
-        handleLogout={() => {}}
-        isLogged={false}
-        loggedMessage=""
-      />
+      <LoginForm />
     </header>
   );
 }

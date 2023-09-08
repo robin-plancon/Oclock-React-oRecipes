@@ -1,29 +1,51 @@
-import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
+import {
+  createAction,
+  createAsyncThunk,
+  createReducer,
+} from '@reduxjs/toolkit';
 import axios from 'axios';
 
 interface UserState {
-  logged: boolean;
+  // logged: boolean;
+  pseudo: string | null;
 }
 export const initialState: UserState = {
-  logged: false,
+  // la propriété d'état `logged` est redondante avec `pseudo` :
+  // quand on est connecté : pseudo est non nul
+  // sinon, il est nul
+  // logged: false,
+  pseudo: null,
 };
 
-export const login = createAsyncThunk('user/login', async () => {
-  const { data } = await axios.post(
-    'https://orecipes-api.onrender.com/api/login',
-    {
-      email: 'bob@mail.io',
-      password: '123456',
-    }
-  );
+export const logout = createAction('user/logout');
 
-  console.log(data);
+export const login = createAsyncThunk(
+  'user/login',
+  async (formData: FormData) => {
+    const objData = Object.fromEntries(formData);
 
-  return data;
-});
+    const { data } = await axios.post(
+      'https://orecipes-api.onrender.com/api/login',
+      objData
+    );
 
-const userReducer = createReducer(initialState, () => {
-  // TODO: Add actions
+    return data as {
+      logged: boolean;
+      pseudo: string;
+      token: string;
+    };
+  }
+);
+
+const userReducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase(login.fulfilled, (state, action) => {
+      // state.logged = true;
+      state.pseudo = action.payload.pseudo;
+    })
+    .addCase(logout, (state) => {
+      state.pseudo = null;
+    });
 });
 
 export default userReducer;
