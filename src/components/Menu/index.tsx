@@ -5,6 +5,7 @@ import './styles.scss';
 
 function Menu() {
   const recipes = useAppSelector((state) => state.recipes.list);
+  const pseudo = useAppSelector((state) => state.user.pseudo);
 
   return (
     <nav className="menu">
@@ -17,14 +18,16 @@ function Menu() {
         Accueil
       </NavLink>
 
-      <NavLink
-        className={({ isActive }) =>
-          isActive ? 'menu-link menu-link--active' : 'menu-link'
-        }
-        to="/favorites"
-      >
-        Mes recettes préférées
-      </NavLink>
+      {pseudo && (
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? 'menu-link menu-link--active' : 'menu-link'
+          }
+          to="/favorites"
+        >
+          Mes recettes préférées
+        </NavLink>
+      )}
 
       {recipes.map((recipe) => (
         <NavLink

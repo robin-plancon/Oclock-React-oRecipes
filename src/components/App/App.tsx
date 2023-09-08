@@ -9,7 +9,7 @@ import Recipe from '../Recipe';
 import Error from '../Error';
 import Loading from './Loading';
 
-import { getRecipes } from '../../store/reducers/recipes';
+import { fetchRecipes } from '../../store/reducers/recipes';
 
 import './App.scss';
 import Favorites from '../Favorites';
@@ -23,7 +23,7 @@ function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getRecipes());
+    dispatch(fetchRecipes());
   }, [dispatch]);
 
   if (loading) {
