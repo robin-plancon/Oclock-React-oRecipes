@@ -1,4 +1,5 @@
 import logo from '../../assets/logo.png';
+import LoginForm from '../LoginForm';
 
 import './styles.scss';
 

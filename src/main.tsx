@@ -17,8 +17,6 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-store.dispatch(getRecipes());
-
 // On injecte notre application dans le DOM
 root.render(
   <BrowserRouter>

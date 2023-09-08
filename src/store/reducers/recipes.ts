@@ -4,9 +4,11 @@ import axios from 'axios';
 import { Recipe } from '../../@types/recipe';
 
 interface RecipesState {
+  loading: boolean;
   list: Recipe[] | null;
 }
 export const initialState: RecipesState = {
+  loading: true,
   list: null,
 };
 
@@ -19,11 +21,16 @@ export const getRecipes = createAsyncThunk('recipes/getRecipes', async () => {
 
 const recipesReducer = createReducer(initialState, (builder) => {
   builder
+    .addCase(getRecipes.pending, (state) => {
+      state.loading = true;
+    })
     .addCase(getRecipes.fulfilled, (state, action) => {
       state.list = action.payload;
+      state.loading = false;
     })
     .addCase(getRecipes.rejected, (state, action) => {
       console.error(action.error);
+      state.loading = false;
     });
 });
 
