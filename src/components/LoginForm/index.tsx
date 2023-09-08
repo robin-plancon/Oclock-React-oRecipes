@@ -4,18 +4,13 @@ import Field from './Field';
 import './styles.scss';
 
 interface LoginFormProps {
-  email: string;
-  password: string;
-  changeField: (value: string, name: 'email' | 'password') => void;
   handleLogin: () => void;
   handleLogout: () => void;
   isLogged?: boolean;
   loggedMessage?: string;
 }
+
 function LoginForm({
-  email,
-  password,
-  changeField,
   handleLogin,
   handleLogout,
   isLogged,
@@ -24,10 +19,6 @@ function LoginForm({
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     handleLogin();
-  };
-
-  const handleChangeField = (name: 'email' | 'password') => (value: string) => {
-    changeField(value, name);
   };
 
   return (
@@ -44,23 +35,15 @@ function LoginForm({
           </button>
         </div>
       )}
+
       {!isLogged && (
         <form
           autoComplete="off"
           className="login-form-element"
           onSubmit={handleSubmit}
         >
-          <Field
-            placeholder="Adresse Email"
-            onChange={handleChangeField('email')}
-            value={email}
-          />
-          <Field
-            type="password"
-            placeholder="Mot de passe"
-            onChange={handleChangeField('password')}
-            value={password}
-          />
+          <Field name="email" placeholder="Adresse Email" type="email" />
+          <Field name="password" placeholder="Mot de passe" type="password" />
           <button type="submit" className="login-form-button">
             OK
           </button>
